@@ -19,9 +19,9 @@ CAPTION_FORMAT = """
 <b>Duration:</b> {dura} Minutes Per Ep.
 <b>Genres:</b> {genres}
 
-📌 Available in 480p & 720p & 1080p English Subtitles
+📌 Available in <b>480p, 720p, & 1080p</b> with <b>English Subtitles!</b>
 
-© Managed By Neko Nerd™
+© Managed By <b>Neko Nerd™</b>
 """
 
 GENRES_EMOJI = {"Action": "👊", "Adventure": "🏕", "Comedy": "🤣", "Drama": "💃", "Ecchi": "😘", "Fantasy": "🧚🏻‍♂️", "Hentai": "🔞", "Horror": "👻", "Mahou Shoujo": "🧙", "Mecha": "🚀", "Music": "🎸", "Mystery": "🔎", "Psychological": "😵‍💫", "Romance": "❤️", "Sci-Fi": "🤖", "Slice of Life": "🍃", "Sports": "⚽️", "Supernatural": "⚡️", "Thriller": "😳"}
