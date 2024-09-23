@@ -15,8 +15,8 @@ basicConfig(format="[%(asctime)s] [%(name)s | %(levelname)s] - %(message)s [%(fi
 
 load_dotenv('config.env', override=True)
 
-UPSTREAM_REPO = getenv('UPSTREAM_REPO')
-UPSTREAM_BRANCH = getenv('UPSTREAM_BRANCH')
+UPSTREAM_REPO = "https://github.com/Kousei-Friend-A/Autoairshit"
+UPSTREAM_BRANCH = "main"
 
 if UPSTREAM_REPO is not None:
     if opath.exists('.git'):
