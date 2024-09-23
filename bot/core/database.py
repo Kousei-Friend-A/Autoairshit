@@ -29,4 +29,4 @@ class MongoDB:
         await self.__animes.drop()
 
 # Initialize MongoDB instance
-db = MongoDB(Var.MONGO_URI, "FZAutoAnimes")
+db = MongoDB(Var.MONGO_URI, "AnimeData")
