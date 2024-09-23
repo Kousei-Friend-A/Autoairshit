@@ -69,7 +69,6 @@ async def aio_urldownload(link):
 async def get_telegraph(out):
     client = TelegraphPoster(use_api=True)
     client.create_api_token("Mediainfo")
-    uname = Var.BRAND_UNAME.lstrip('@')
     page = client.post(
         title="Mediainfo",
         author=uname,
