@@ -54,11 +54,11 @@ class Var:
     FFCODE_360 = """ffmpeg -i '{}' -progress '{}' -preset superfast -c:v libx264 -s 640x360 -pix_fmt yuv420p -crf 30 -c:a libopus -b:a 32k -c:s copy -map 0 -ac 2 -ab 32k -vbr 2 -level 3.1 '{}' -y"""
     QUALS = getenv("QUALS", "360 480 720 1080").split()
     
-    AS_DOC = getenv("AS_DOC", "True").lower() == "true"
-    THUMB = getenv("THUMB", "https://te.legra.ph/file/621c8d40f9788a1db7753.jpg")
+    AS_DOC = "True"
+    THUMB="https://te.legra.ph/file/621c8d40f9788a1db7753.jpg"
     AUTO_DEL = getenv("AUTO_DEL", "True").lower() == "true"
     DEL_TIMER = int(getenv("DEL_TIMER", "600"))
-    START_PHOTO = getenv("START_PHOTO", "https://te.legra.ph/file/120de4dbad87fb20ab862.jpg")
+    START_PHOTO="https://i.ibb.co/ZM9mfL1/wallpaperflare-com-wallpaper.jpg"
     START_MSG="<b>Konichiwa Onii-Chan</b>,\nI'm Umaru\nAm a good lazy girl who can give you Anime Files that uploaded to Our Channel."
     START_BUTTONS="Check out|https://telegram.me/Ongoing_animes_arc"
 
