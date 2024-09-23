@@ -25,7 +25,7 @@ btn_formatter = {
 }
 
 async def fetch_animes():
-    await rep.report("Fetch Animes Started !!", "info")
+    await rep.report("Fetch Animes Started!!", "info")
     while True:
         await asleep(60)
         if ani_cache['fetch_animes']:
@@ -103,7 +103,7 @@ async def get_animes(name, torrent, force=False):
                     await stat_msg.delete()
                     ffLock.release()
                     return
-                await rep.report("Succesfully Uploaded File into Tg...", "info")
+                await rep.report("Succesfully Uploaded File into Telegram..", "info")
                 
                 msg_id = msg.id
                 link = f"https://telegram.me/{(await bot.get_me()).username}?start={await encode('get-'+str(msg_id * abs(Var.FILE_STORE)))}"
