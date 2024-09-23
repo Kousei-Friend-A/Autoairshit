@@ -60,7 +60,7 @@ class Var:
     DEL_TIMER = int(getenv("DEL_TIMER", "600"))
     START_PHOTO = getenv("START_PHOTO", "https://te.legra.ph/file/120de4dbad87fb20ab862.jpg")
     START_MSG="<b>Konichiwa Onii-Chan</b>,\nI'm Umaru\nAm a good lazy girl who can give you Anime Files that uploaded to Our Channel."
-    START_BUTTONS = getenv("START_BUTTONS")
+    START_BUTTONS="Check out|https://telegram.me/Ongoing_animes_arc"
 
 if Var.THUMB and not ospath.exists("thumb.jpg"):
     system(f"wget -q {Var.THUMB} -O thumb.jpg")
