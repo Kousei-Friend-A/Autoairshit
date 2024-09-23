@@ -21,7 +21,7 @@ CAPTION_FORMAT = """
 
 📌 Available in 480p & 720p & 1080p English Subtitles
 
-© Managed By Elvazo™
+© Managed By Neko Nerd™
 """
 
 GENRES_EMOJI = {"Action": "👊", "Adventure": "🏕", "Comedy": "🤣", "Drama": "💃", "Ecchi": "😘", "Fantasy": "🧚🏻‍♂️", "Hentai": "🔞", "Horror": "👻", "Mahou Shoujo": "🧙", "Mecha": "🚀", "Music": "🎸", "Mystery": "🔎", "Psychological": "😵‍💫", "Romance": "❤️", "Sci-Fi": "🤖", "Slice of Life": "🍃", "Sports": "⚽️", "Supernatural": "⚡️", "Thriller": "😳"}
