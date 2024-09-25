@@ -21,7 +21,7 @@ CAPTION_FORMAT = """
 
 📌 Available in <b>480p, 720p, & 1080p</b> with <b>English Subtitles!</b>
 
-© Managed By <b>Umaru™ Chan</b>
+© Managed By <b>NekoNerd™</b>
 """
 
 GENRES_EMOJI = {"Action": "👊", "Adventure": "🏕", "Comedy": "🤣", "Drama": "💃", "Ecchi": "😘", "Fantasy": "🧚🏻‍♂️", "Hentai": "🔞", "Horror": "👻", "Mahou Shoujo": "🧙", "Mecha": "🚀", "Music": "🎸", "Mystery": "🔎", "Psychological": "😵‍💫", "Romance": "❤️", "Sci-Fi": "🤖", "Slice of Life": "🍃", "Sports": "⚽️", "Supernatural": "⚡️", "Thriller": "😳"}
