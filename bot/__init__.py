@@ -33,7 +33,7 @@ ff_queued = dict()
 
 class Var:
     API_ID, API_HASH, BOT_TOKEN = getenv("API_ID"), getenv("API_HASH"), getenv("BOT_TOKEN")
-    MONGO_URI = getenv("MONGO_URI")
+    MONGO_URI = "mongodb+srv://peacefulwolfdev:jR9mR92gQC1QhpdZ@cluster0.jbkwr.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
     
     if not BOT_TOKEN or not API_HASH or not API_ID or not MONGO_URI:
         LOGS.critical('Important Variables Missing. Fill Up and Retry..!! Exiting Now...')
