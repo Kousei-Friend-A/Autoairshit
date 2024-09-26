@@ -62,5 +62,6 @@ class TgUploader:
 ● <code>[{bar}]</code> {percent}%   
 ● <b>Size:</b> {convertBytes(current)} out of ~ {convertBytes(total)}
 ● <b>Speed :</b> {convertBytes(speed)}/s
-● <b>ETA:</b> {convertTime(eta)}"""            
+● <b>ETA:</b> {convertTime(eta)}"""
+            
             await editMessage(self.message, progress_str)
