@@ -24,14 +24,7 @@ CAPTION_FORMAT = """
 © Managed By Elvazo™
 """
 
-GENRES_EMOJI = {
-    "Action": "👊", "Adventure": "🏕", "Comedy": "🤣", "Drama": "💃", 
-    "Ecchi": "😘", "Fantasy": "🧚🏻‍♂️", "Hentai": "🔞", "Horror": "👻", 
-    "Mahou Shoujo": "🧙", "Mecha": "🚀", "Music": "🎸", "Mystery": "🔎", 
-    "Psychological": "😵‍💫", "Romance": "❤️", "Sci-Fi": "🤖", 
-    "Slice of Life": "🍃", "Sports": "⚽️", "Supernatural": "⚡️", 
-    "Thriller": "😳"
-}
+GENRES_EMOJI = {"Action": "👊", "Adventure": "🏕", "Comedy": "🤣", "Drama": "💃", "Ecchi": "😘", "Fantasy": "🧚🏻‍♂️", "Hentai": "🔞", "Horror": "👻", "Mahou Shoujo": "🧙", "Mecha": "🚀", "Music": "🎸", "Mystery": "🔎", "Psychological": "😵‍💫", "Romance": "❤️", "Sci-Fi": "🤖", "Slice of Life": "🍃", "Sports": "⚽️", "Supernatural": "⚡️", "Thriller": "😳"}
 
 ANIME_GRAPHQL_QUERY = """
 query ($id: Int, $search: String, $seasonYear: Int) {
@@ -118,14 +111,14 @@ class AniLister:
         self.__api = "https://graphql.anilist.co"
         self.__ani_name = anime_name
         self.__ani_year = year
-        self.__vars = {'search': self.__ani_name, 'seasonYear': self.__ani_year}
+        self.__vars = {'search' : self.__ani_name, 'seasonYear': self.__ani_year}
 
     def __update_vars(self, year=True) -> None:
         if year:
             self.__ani_year -= 1
             self.__vars['seasonYear'] = self.__ani_year
         else:
-            self.__vars = {'search': self.__ani_name}
+            self.__vars = {'search' : self.__ani_name}
 
     async def post_data(self):
         async with ClientSession() as sess:
@@ -205,28 +198,33 @@ class TextEditor:
         anime_name = self.pdata.get("anime_title")
         codec = 'HEVC' if 'libx265' in ffargs[qual] else 'AV1' if 'libaom-av1' in ffargs[qual] else ''
         lang = 'Multi-Audio' if 'multi-audio' in self.__name.lower() else 'Sub'
-        anime_season = str(self.pdata.get('anime_season', '01'))
+        anime_season = str(ani_s[-1]) if (ani_s := self.pdata.get('anime_season', '01')) and isinstance(ani_s, list) else str(ani_s)
         if anime_name and self.pdata.get("episode_number"):
             titles = self.adata.get('title', {})
-            return f"""[S{anime_season}-{'E'+str(self.pdata.get('episode_number')) if self.pdata.get('episode_number') else ''}] {titles.get('english') or titles.get('romaji') or titles.get('native', 'N/A')} {'['+qual+'p]' if qual else ''} {'['+codec.upper()+'] ' if codec else ''}{'['+lang+']'} {Var.BRAND_UNAME}.mkv"""
+            return f"""[S{anime_season}-{'E'+str(self.pdata.get('episode_number')) if self.pdata.get('episode_number') else ''}] {titles.get('english') or titles.get('romaji') or titles.get('native')} {'['+qual+'p]' if qual else ''} {'['+codec.upper()+'] ' if codec else ''}{'['+lang+']'} {Var.BRAND_UNAME}.mkv"""
 
     @handle_logs
     async def get_caption(self):
         sd = self.adata.get('startDate', {})
-        startdate = f"{month_name[sd.get('month', 0)]} {sd.get('day', 'N/A')}, {sd.get('year', 'N/A')}" if sd.get('day') and sd.get('year') else "N/A"
-        
+        startdate = f"{month_name[sd['month']]} {sd['day']}, {sd['year']}" if sd.get('day') and sd.get('year') else ""
         ed = self.adata.get('endDate', {})
-        enddate = f"{month_name[ed.get('month', 0)]} {ed.get('day', 'N/A')}, {ed.get('year', 'N/A')}" if ed.get('day') and ed.get('year') else "N/A"
-        
+        enddate = f"{month_name[ed['month']]} {ed['day']}, {ed['year']}" if ed.get('day') and ed.get('year') else ""
         titles = self.adata.get("title", {})
-        status = (self.adata.get("status") or "N/A").capitalize()
+        status = self.adata.get("status") or "N/A"
+        if status != "N/A":
+            status = status.capitalize()
 
         return CAPTION_FORMAT.format(
-            title=titles.get('english') or titles.get('romaji') or titles.get('native', 'N/A'),
-            genres=", ".join(f"{GENRES_EMOJI.get(x, '')} {x.replace(' ', '_').replace('-', '_')}" for x in (self.adata.get('genres') or [])),
-            avg_score=f"{self.adata.get('averageScore', 'N/A')}%" if self.adata.get('averageScore') else "N/A",
-            status=status,
-            ep_no=self.pdata.get("episode_number", 'N/A'),
-            surl=self.adata.get("siteUrl", 'N/A'),
-            dura=self.adata.get("duration", 'N/A'),
-        )
+                title=titles.get('english') or titles.get('romaji') or title.get('native'),
+                form=self.adata.get("format") or "N/A",
+                genres=", ".join(f"{GENRES_EMOJI[x]} {x.replace(' ', '_').replace('-', '_')}" for x in (self.adata.get('genres') or [])),
+                avg_score=f"{sc}%" if (sc := self.adata.get('averageScore')) else "N/A",
+                status=status,
+                start_date=startdate or "N/A",
+                end_date=enddate or "N/A",
+                t_eps=self.adata.get("episodes") or "N/A",
+                plot= (desc if (desc := self.adata.get("description") or "N/A") and len(desc) < 200 else desc[:200] + "..."),
+                ep_no=self.pdata.get("episode_number"),
+                surl=self.adata.get("siteUrl"),
+                dura=self.adata.get("duration"),
+            )
