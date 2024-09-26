@@ -53,7 +53,7 @@ async def gen_ss_sam(hash, filename, log):
         ss, dd = await duration_s(filename)
         __ = filename.split(".mkv")[-2]
         out = __ + "_sample.mkv"
-        _ncmd = f'ffmpeg -i """{filename}""" -preset veryfast -ss {ss} -to {dd} -c:v copy -crf 26 -map 0:v -c:a aac -map 0:a -c:s copy -map 0:s? """{out}""" -y'
+        _ncmd = f'ffmpeg -i """{filename}""" -preset ultrafast -ss {ss} -to {dd} -c:v copy -crf 27 -map 0:v -c:a aac -map 0:a -c:s copy -map 0:s? """{out}""" -y'
         process = await asyncio.create_subprocess_shell(
             _ncmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
         )
