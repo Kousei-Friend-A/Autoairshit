@@ -56,6 +56,7 @@ class FFEncoder:
 ● <b>Size:</b> {convertBytes(ensize)} out of ~ {convertBytes(tsize)}
 ● <b>Speed:</b> {convertBytes(speed)}/s
 ● <b>ETA:</b> {convertTime(eta)}"""
+                
                 await editMessage(self.message, progress_str)
                 if (prog := findall(r"progress=(\w+)", text)) and prog[-1] == 'end':
                     break
